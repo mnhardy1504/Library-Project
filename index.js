@@ -20,3 +20,23 @@ function addBookToLibrary() {
 }
 
 addBookToLibrary()
+
+function displayBooks() {
+  const container = document.getElementById('bookContainer');
+
+  myLibrary.forEach(book => {
+    const bookElement = document.createElement('div');
+    bookElement.classList.add('book'); // exists for styling purposes
+
+    bookElement.innerHTML = `
+      <h2>${book.title}</h2>
+      <p>Author: ${book.author}</p>
+      <p>Pages: ${book.pages}</p>
+      <p>Read: ${book.read ? 'Yes' : 'No'}</p>
+    `; 
+
+  container.appendChild(bookElement);
+  });
+}
+
+displayBooks();
