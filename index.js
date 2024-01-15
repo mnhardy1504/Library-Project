@@ -13,7 +13,6 @@ function addBookToLibrary() {
 }
 
 
-
 function displayBooks() {  //displays library of books
   const container = document.getElementById('bookContainer');
   container.innerHTML = '';  
@@ -38,24 +37,34 @@ function displayForm() {
   const form = document.createElement('form');
 
   const titleInput = createFormInput('Title', 'text');
+  console.log('hi')
   const authorInput = createFormInput('Author', 'text');
   const pagesInput = createFormInput('Pages', 'number');
   const readInput = createFormInput('Read', 'checkbox');
+
+  console.log('hi')
 
   const submitButton = document.createElement('button');
   submitButton.textContent = 'Add Book';
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
-    const newBook = new Book(
-      titleInput.value,
-      authorInput.value,
-      parseInt(pagesInput.value),
-      readInput.checked
-    );
+    const titleValue = titleInput.querySelector('input').value;
+    const authorValue = authorInput.querySelector('input').value;
+    const pagesValue = parseInt(pagesInput.querySelector('input').value);
+    const readValue = readInput.querySelector('input').checked;
+
+    console.log('Title:', titleValue);
+    console.log('Author:', authorValue);
+    console.log('Pages:', pagesValue);
+    console.log('Read:', readValue);
+
+    const newBook = new Book(titleValue, authorValue, pagesValue, readValue);
+
     myLibrary.push(newBook);
-    displayBooks(); // Refresh the displayed books
-  });
+
+  displayBooks();
+});
 
   form.appendChild(titleInput);
   form.appendChild(authorInput);
